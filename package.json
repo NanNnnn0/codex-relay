@@ -1,17 +1,17 @@
 {
-  "name": "reason-network-local",
+  "name": "codex-relay",
   "version": "0.2.0",
   "license": "MIT",
   "private": false,
   "repository": {
     "type": "git",
-    "url": "https://github.com/NanNnnn0/reason-network-local.git"
+    "url": "https://github.com/NanNnnn0/codex-relay.git"
   },
   "bugs": {
-    "url": "https://github.com/NanNnnn0/reason-network-local/issues"
+    "url": "https://github.com/NanNnnn0/codex-relay/issues"
   },
-  "homepage": "https://github.com/NanNnnn0/reason-network-local#readme",
-  "description": "Windows-first local multi-agent coordination daemon and MCP bridge",
+  "homepage": "https://github.com/NanNnnn0/codex-relay#readme",
+  "description": "Delegate coding tasks from Grok Bot to Codex over MCP",
   "type": "module",
   "engines": { "node": ">=22" },
   "scripts": {

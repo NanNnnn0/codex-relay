@@ -1,6 +1,6 @@
 ﻿<#
 .SYNOPSIS
-  Start reason-network-local MCP over Streamable HTTP via supergateway (localhost only).
+  Start Codex Relay MCP over Streamable HTTP via supergateway (localhost only).
 
 .DESCRIPTION
   - Requires Node >= 22

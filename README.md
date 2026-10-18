@@ -1,12 +1,13 @@
-# Reason Network Local
+# Codex Relay
 
 ![Status: experimental](https://img.shields.io/badge/status-experimental-orange)
 ![Node.js: 22%2B](https://img.shields.io/badge/node.js-22%2B-339933?logo=node.js&logoColor=white)
 ![License: MIT](https://img.shields.io/badge/license-MIT-blue)
 
-A Windows-first local coordination layer for coding agents. It keeps the useful
-M0 idea from [Reason Network](https://github.com/reason-machines/reason-network):
-one daemon owns shared state, while each agent gets a thin MCP bridge.
+A Windows-first MCP relay that lets a coding Grok Bot delegate difficult coding
+tasks to Codex. It keeps the useful M0 idea from
+[Reason Network](https://github.com/reason-machines/reason-network): one daemon
+owns shared state, while each agent gets a thin MCP bridge.
 
 This project is intentionally smaller than the full Reason Network. It does not
 implement team membership or peer-to-peer transport. It is for one computer,
@@ -39,22 +40,27 @@ multiple agent sessions, and an optional remote MCP gateway.
 ## Quick start
 
 ```powershell
-git clone https://github.com/NanNnnn0/reason-network-local.git
-cd reason-network-local
+git clone https://github.com/NanNnnn0/codex-relay.git
+cd codex-relay
 npm test
 npm run daemon
 ```
 
 The daemon stores state in the platform user-data directory and listens on
-`\\.\pipe\reason-network-local` on Windows. Set
+`\\.\pipe\reason-network-local` on Windows. This internal pipe name is kept
+for compatibility with existing installations. Set
 `REASON_NETWORK_DATA_DIR` to choose another database directory.
+
+Paths such as `C:\\path\\to\\codex-relay` in the examples are placeholders.
+Clone the repository wherever you prefer (including another drive) and replace
+the example path with that location.
 
 Configure an MCP client to start the stateless bridge:
 
 ```json
 {
   "command": "node",
-  "args": ["C:\\path\\to\\reason-network-local\\src\\mcp-bridge.js"],
+  "args": ["C:\\path\\to\\codex-relay\\src\\mcp-bridge.js"],
   "env": {
     "REASON_NETWORK_AGENT": "claude",
     "REASON_NETWORK_SESSION": "api-claude",

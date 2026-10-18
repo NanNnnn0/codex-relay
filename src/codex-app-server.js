@@ -48,7 +48,7 @@ export class CodexAppServer {
     this.activeCalls++;
     try {
       await this.request("initialize", {
-        clientInfo: { name: "reason-network-local", title: "Reason Network", version: "0.2.0" },
+        clientInfo: { name: "codex-relay", title: "Codex Relay", version: "0.2.0" },
       }, this.initializeTimeoutMs);
       this.notify("initialized", {});
       this.lastActivityAt = Date.now();
@@ -153,7 +153,7 @@ export class CodexAppServer {
         approvalPolicy: "never",
         sandbox: "workspace-write",
         ephemeral: false,
-        serviceName: "reason-network-local",
+        serviceName: "codex-relay",
       });
     } finally {
       this.activeCalls--;

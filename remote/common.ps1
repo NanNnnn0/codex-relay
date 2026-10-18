@@ -42,7 +42,7 @@ function Assert-RnNodeVersion {
   if ($ver -notmatch '^v(\d+)\.') { throw "Cannot parse Node version from: $ver" }
   $major = [int]$Matches[1]
   if ($major -lt 22) {
-    throw "Node $ver is too old. reason-network-local requires Node >= 22 (got major $major)."
+    throw "Node $ver is too old. Codex Relay requires Node >= 22 (got major $major)."
   }
   return @{ Path = $node; Version = $ver; Major = $major }
 }
@@ -122,7 +122,7 @@ function Stop-RnPidTree([int]$ProcessId) {
 function Stop-RnDaemonByCommandLine {
   try {
     Get-CimInstance Win32_Process -Filter "Name='node.exe'" -ErrorAction SilentlyContinue |
-      Where-Object { $_.CommandLine -match 'reason-network-local[\\/]+src[\\/]+daemon\.js' } |
+      Where-Object { $_.CommandLine -match '(codex-relay|reason-network-local)[\\/]+src[\\/]+daemon\.js' } |
       ForEach-Object {
         Write-Host "Stopping Reason Network daemon PID $($_.ProcessId)"
         Stop-Process -Id $_.ProcessId -Force -ErrorAction SilentlyContinue

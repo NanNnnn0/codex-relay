@@ -1,7 +1,7 @@
 # Remote MCP gateway
 
 This package exposes the local stdio bridge through Streamable HTTP so a remote
-coordinator can call the Reason Network Local tools. It is intended for a
+coordinator can call Codex Relay tools. It is intended for a
 private tunnel such as Tailscale Serve. The gateway listens on loopback by
 default and requires an API key for MCP requests.
 
@@ -15,7 +15,7 @@ default and requires an API key for MCP requests.
 ## Start
 
 ```powershell
-cd path\to\reason-network-local\remote
+cd path\to\codex-relay\remote
 .\start-remote.ps1
 ```
 
@@ -33,7 +33,8 @@ Useful environment variables:
 
 The script writes runtime state, logs, and the generated key under
 `%LOCALAPPDATA%\ReasonNetwork\remote\`. These files are deliberately outside
-the repository.
+the repository. `%LOCALAPPDATA%` is a Windows environment path and can point to
+a profile on a drive other than `C:`.
 
 Local endpoints:
 

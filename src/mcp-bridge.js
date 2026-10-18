@@ -82,7 +82,7 @@ async function main() {
         let req; try { req = JSON.parse(line); } catch { return; }
       try {
         let result;
-        if (req.method === "initialize") result = { protocolVersion: "2024-11-05", capabilities: { tools: {} }, serverInfo: { name: "reason-network-local", version: "0.2.0" } };
+        if (req.method === "initialize") result = { protocolVersion: "2024-11-05", capabilities: { tools: {} }, serverInfo: { name: "codex-relay", version: "0.2.0" } };
         else if (req.method === "notifications/initialized") return;
         else if (req.method === "tools/list") result = { tools };
         else if (req.method === "tools/call") {
