@@ -30,11 +30,12 @@ Useful environment variables:
 | `REASON_NETWORK_REMOTE_PORT` | `3920` | Local gateway port. |
 | `REASON_NETWORK_REMOTE_IDLE_MINUTES` | `15` | Stop after this many minutes without a client connection. |
 | `REASON_NETWORK_REMOTE_API_KEY` | generated | Override the stored API key. |
+| `REASON_NETWORK_REMOTE_STATE_DIR` | Windows user data folder | Choose where remote state, logs, wrapper script, and API key are stored. |
 
-The script writes runtime state, logs, and the generated key under
-`%LOCALAPPDATA%\ReasonNetwork\remote\`. These files are deliberately outside
-the repository. `%LOCALAPPDATA%` is a Windows environment path and can point to
-a profile on a drive other than `C:`.
+By default, runtime state, logs, and the generated key are stored in the Windows
+user data folder, outside the repository. Set
+`REASON_NETWORK_REMOTE_STATE_DIR` before starting the gateway to choose another
+location.
 
 Local endpoints:
 

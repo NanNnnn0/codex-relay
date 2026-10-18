@@ -40,31 +40,31 @@ multiple agent sessions, and an optional remote MCP gateway.
 ## Quick start
 
 ```powershell
-git clone https://github.com/NanNnnn0/codex-relay.git
-cd codex-relay
+$installDir = Read-Host "Choose a folder for Codex Relay"
+git clone https://github.com/NanNnnn0/codex-relay.git $installDir
+Set-Location $installDir
 npm test
 npm run daemon
 ```
 
 The daemon stores state in the platform user-data directory and listens on
 `\\.\pipe\reason-network-local` on Windows. This internal pipe name is kept
-for compatibility with existing installations. Set
-`REASON_NETWORK_DATA_DIR` to choose another database directory.
-
-Paths such as `C:\\path\\to\\codex-relay` in the examples are placeholders.
-Clone the repository wherever you prefer (including another drive) and replace
-the example path with that location.
+for compatibility with existing installations. Set `REASON_NETWORK_DATA_DIR`
+to choose the database directory, and `REASON_NETWORK_TASK_ROOT` to choose where
+delegated Codex worktrees are created.
 
 Configure an MCP client to start the stateless bridge:
 
 ```json
 {
   "command": "node",
-  "args": ["C:\\path\\to\\codex-relay\\src\\mcp-bridge.js"],
+  "args": ["<your-selected-install-folder>/src/mcp-bridge.js"],
   "env": {
     "REASON_NETWORK_AGENT": "claude",
     "REASON_NETWORK_SESSION": "api-claude",
-    "REASON_NETWORK_CWD": "C:\\path\\to\\your\\repo"
+    "REASON_NETWORK_CWD": "<your-project-folder>",
+    "REASON_NETWORK_DATA_DIR": "<your-data-folder>",
+    "REASON_NETWORK_TASK_ROOT": "<your-codex-worktree-folder>"
   }
 }
 ```
@@ -91,7 +91,7 @@ Example request:
 ```json
 {
   "project": "example-api",
-  "cwd": "C:\\work\\example-api",
+  "cwd": "<your-project-folder>",
   "prompt": "Add request validation and update the API tests.",
   "acceptance_criteria": [
     "Validation covers malformed input",
@@ -106,8 +106,8 @@ Supported reasoning levels are `none`, `minimal`, `low`, `medium`, `high`,
 `xhigh`, `max`, and `ultra`. The model and effort are passed to Codex for that
 task only; they do not silently change an existing agent session.
 
-Delegated work runs in an isolated worktree under the task root. Configure it
-with `REASON_NETWORK_TASK_ROOT`; otherwise it defaults to a user-data directory.
+Delegated work runs in an isolated worktree under the task root. Configure its
+location with `REASON_NETWORK_TASK_ROOT`; otherwise it defaults to a user-data directory.
 The task sandbox does not have network access unless the daemon environment sets
 `REASON_NETWORK_CODEX_NETWORK_ACCESS=enabled`.
 

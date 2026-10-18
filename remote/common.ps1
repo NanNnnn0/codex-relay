@@ -5,7 +5,11 @@ $ErrorActionPreference = 'Stop'
 
 $script:RnRoot = (Resolve-Path (Join-Path $PSScriptRoot '..')).Path
 $script:RnRemoteDir = $PSScriptRoot
-$script:RnStateDir = Join-Path $env:LOCALAPPDATA 'ReasonNetwork\remote'
+$script:RnStateDir = if ($env:REASON_NETWORK_REMOTE_STATE_DIR) {
+  [System.IO.Path]::GetFullPath($env:REASON_NETWORK_REMOTE_STATE_DIR)
+} else {
+  Join-Path $env:LOCALAPPDATA 'ReasonNetwork\remote'
+}
 $script:RnStateFile = Join-Path $script:RnStateDir 'state.json'
 $script:RnLogDir = Join-Path $script:RnStateDir 'logs'
 $script:RnApiKeyFile = Join-Path $script:RnStateDir 'api-key.txt'
@@ -27,7 +31,7 @@ function Ensure-RnDirs {
 function Get-RnNode {
   $candidates = @(
     $env:REASON_NETWORK_NODE,
-    'C:\Program Files\nodejs\node.exe',
+    $(if ($env:ProgramFiles) { Join-Path $env:ProgramFiles 'nodejs\node.exe' }),
     (Get-Command node -ErrorAction SilentlyContinue | Select-Object -ExpandProperty Source)
   ) | Where-Object { $_ }
   foreach ($c in $candidates) {
