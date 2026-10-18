@@ -1,0 +1,23 @@
+{
+  "name": "reason-network-local",
+  "version": "0.2.0",
+  "license": "MIT",
+  "private": false,
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/NanNnnn0/reason-network-local.git"
+  },
+  "bugs": {
+    "url": "https://github.com/NanNnnn0/reason-network-local/issues"
+  },
+  "homepage": "https://github.com/NanNnnn0/reason-network-local#readme",
+  "description": "Windows-first local multi-agent coordination daemon and MCP bridge",
+  "type": "module",
+  "engines": { "node": ">=22" },
+  "scripts": {
+    "test": "node --test",
+    "daemon": "node src/daemon.js",
+    "mcp": "node src/mcp-bridge.js",
+    "install-hooks": "node src/install-hooks.js"
+  }
+}
